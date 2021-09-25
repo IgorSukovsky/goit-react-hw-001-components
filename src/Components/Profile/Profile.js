@@ -1,32 +1,39 @@
-import React from 'react'
+import React from "react";
+import styles from "./Profile.module.css";
+import propTypes from "prop-types";
 
+const Profile = ({ avatar, name, tag, location, stats }) => {
+  return (
+    <div className={styles.profile}>
+      <div className={styles.description}>
+        <img src={avatar} alt={avatar} className={styles.avatar} />
+        <p className={styles.name}>{name}</p>
+        <p className={styles.tag}>@{tag}</p>
+        <p className={styles.location}>{location}</p>
+      </div>
 
-const Profile = ({avatar,name,tag,location,stats}) => {
-    return (
-<div >
-  <div >
-    <img src={avatar}  alt={avatar} width='200' />
-    <p>{name}</p>
-    <p>@{tag}</p>
-    <p>{location}</p>
-  </div>
-
-  <ul >
-    <li>
-      <span >Followers</span>
-      <span >{stats.followers}</span>
-    </li>
-    <li>
-      <span >Views</span>
-      <span >{stats.views}</span>
-    </li>
-    <li>
-      <span >Likes</span>
-      <span >{stats.likes}</span>
-    </li>
-  </ul>
-</div>
-    );
-}
+      <ul className={styles.stats}>
+        {Object.entries(stats).map((item) => (
+          <li key={item[0]}>
+            <span className={styles.label}>{item[0]}</span>
+            <span className={styles.quantity}>{item[1]}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default Profile;
+
+Profile.propTypes = {
+  name: propTypes.string.isRequired,
+  tag: propTypes.string.isRequired,
+  location: propTypes.string.isRequired,
+  avatar: propTypes.string.isRequired,
+  status: propTypes.shape({
+    followers: propTypes.number.isRequired,
+    views: propTypes.number.isRequired,
+    likes: propTypes.number.isRequired,
+  }),
+};
