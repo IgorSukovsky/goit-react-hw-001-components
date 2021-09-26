@@ -7,12 +7,12 @@ const FriendList = ({ friends }) => {
   return (
     <div className={styles.friend}>
       <ul className={styles.friendList}>
-        {friends.map((friend) => (
+        {friends.map(({ id, name, avatar, isOnline }) => (
           <FriendListItem
-            key={friend.id}
-            name={friend.name}
-            avatar={friend.avatar}
-            isOnline={friend.isOnline}
+            key={id}
+            name={name}
+            avatar={avatar}
+            isOnline={isOnline}
           />
         ))}
       </ul>

@@ -10,7 +10,8 @@ const color = (item) => {
 const Statistics = ({ title, stats }) => {
   return (
     <section className={styles.statistics}>
-      <h2 className={styles.title}>{title}</h2>
+      {/* <h2 className={styles.title}>{title}</h2> */}
+      {title ? <h2 className={styles.title}>{title}</h2> : null}
 
       <ul className={styles.statList}>
         {stats.map((item) => (
